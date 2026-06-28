@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="5dp">
+
+    <TextView
+        android:id="@+id/tvOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="@string/who_we_are"
+        android:textColor="@color/pantone_blue_aster"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="@string/who_we_are_msg_one"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvOne" />
+
+    <TextView
+        android:id="@+id/tvThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="@string/our_mission"
+        android:textColor="@color/pantone_blue_aster"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTwo" />
+
+    <TextView
+        android:id="@+id/tvFour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="@string/protect_stray_cats"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvThree" />
+
+    <TextView
+        android:id="@+id/tvFive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="@string/why_purrRescue"
+        android:textColor="@color/pantone_blue_aster"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFour" />
+
+    <TextView
+        android:id="@+id/tvSix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="@string/why_purrRescue_msg"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFive" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivCatImage"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="@dimen/margin_large"
+        android:src="@drawable/pet"
+        app:layout_constraintEnd_toStartOf="@+id/tvSeven"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSix" />
+
+    <TextView
+        android:id="@+id/tvSeven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_large"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="@string/every_meow_matters"
+        android:textColor="@color/pantone_blue_aster"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ivCatImage"
+        app:layout_constraintStart_toEndOf="@+id/ivCatImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvSix" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

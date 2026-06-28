@@ -3,5 +3,14 @@
     <string name="home">Home</string>
     <string name="my_reports">My Reports</string>
     <string name="report_cat">Report Cat</string>
+    <string name="every_meow_matters">Every Meow Matters</string>
     <string name="profile">Profile</string>
+    <string name="who_we_are">Who We Are</string>
+    <string name="who_we_are_msg_one">PurrRescue is a community-driven initiative focused on helping stray cats through reporting, rescue tracking, and community support. \nOur goal is to make it easier for people to take action when they encounter a cat in need and to create a safer future for stray cats everywhere.</string>
+    <string name="our_mission">Our Mission</string>
+    <string name="protect_stray_cats">Protect stray cats \nEncourage community participation \nCreate a transparent rescue tracking system</string>
+    <string name="why_purrRescue">Why PurrRescue?</string>
+    <string name="why_purrRescue_msg">Many stray cats go unnoticed because people don\'t know whom to contact or how to help. \nPurrRescue provides a simple way to report, track, and update rescue cases, allowing communities to work together and improve the lives of cats in need.</string>
+
+
 </resources>

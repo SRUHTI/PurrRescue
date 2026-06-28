@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pantone_blue_aster">#0274b3</color>
+    <color name="alice_blue">#E1EBF1</color>
+    <color name="pale_primrose">#F1F0C0</color>
+    <color name="off_white">#FAF9F6</color>
+    <color name="orange">#FFA500</color>
 </resources>

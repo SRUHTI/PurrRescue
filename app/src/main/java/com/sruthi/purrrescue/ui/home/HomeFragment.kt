@@ -1,4 +1,29 @@
 package com.sruthi.purrrescue.ui.home
 
-class HomeFragment {
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.sruthi.purrrescue.databinding.HomeFragmentLayoutBinding
+
+class HomeFragment: Fragment() {
+
+    private lateinit var binding: HomeFragmentLayoutBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        binding = HomeFragmentLayoutBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
 }

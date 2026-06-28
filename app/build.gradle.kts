@@ -58,4 +58,9 @@ dependencies {
     implementation("com.google.firebase:firebase-database-ktx:20.3.0")
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
+    implementation(libs.glide)
+    implementation(libs.toolTip)
+    implementation(libs.lottie)
 }

@@ -6,4 +6,7 @@
     </style>
 
     <style name="Theme.PurrRescue" parent="Base.Theme.PurrRescue" />
+    <style name="EditTextFieldOutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/pantone_blue_aster</item>
+    </style>
 </resources>

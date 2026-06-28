@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_medium">10dp</dimen>
+        <dimen name="margin_large">15dp</dimen>
+        <dimen name="margin">5dp</dimen>
+    <dimen name="button_size">13sp</dimen>
+
+    <!-- Text -->
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_standard">14sp</dimen>
+    <dimen name="text_large">16sp</dimen>
+</resources>
