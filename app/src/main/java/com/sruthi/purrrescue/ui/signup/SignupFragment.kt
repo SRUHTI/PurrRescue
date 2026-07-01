@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.sruthi.purrrescue.databinding.SignupFragmentLayoutBinding
 
 class SignupFragment: Fragment() {
@@ -24,6 +25,14 @@ class SignupFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnLogin.setOnClickListener {
+            findNavController().navigate(SignupFragmentDirections.signupToLoginScreen())
+        }
+
+        binding.btnSignUp.setOnClickListener {
+        }
+
     }
 
 }

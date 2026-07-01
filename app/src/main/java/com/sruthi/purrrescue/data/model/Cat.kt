@@ -1,5 +1,9 @@
 package com.sruthi.purrrescue.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Cat(
     val catId: String = "",
     val description: String = "",
@@ -16,4 +20,4 @@ data class Cat(
 
     val rescuedBy: String? = null,
     val rescuedAt: Long? = null
-)
+): Parcelable

@@ -10,7 +10,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.skydoves.balloon.ArrowOrientation
 import com.skydoves.balloon.Balloon
-import com.skydoves.balloon.BalloonAlign
 import com.skydoves.balloon.BalloonAnimation
 import com.skydoves.balloon.BalloonSizeSpec
 import com.sruthi.purrrescue.databinding.ReportCatsFragmentLayoutBinding
@@ -41,6 +40,7 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
             .setText("Help us rescue this cat: upload a clear photo, capture the exact location, and describe their condition or behavior.")
             .setTextSize(13f)
             .setArrowSize(10)
+            .setTextColor(resources.getColor(R.color.black))
             .setArrowOrientation(ArrowOrientation.TOP)
             .setArrowPosition(0.5f)
             .setWidthRatio(0.85f)
@@ -59,7 +59,7 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
     }
 
 
-    override fun onMapReady(p0: GoogleMap) {
+    override fun onMapReady(map: GoogleMap) {
 
     }
 

@@ -1,6 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.sruthi.purrrescue.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home_fragment_layout">
+
+        <action
+            android:id="@+id/home_to_cats_detail_screen"
+            app:destination="@+id/catDetailsFragment" >
+
+            <argument
+                android:name="catDetails"
+                app:argType="com.sruthi.purrrescue.data.model.Cat" />
+        </action>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.sruthi.purrrescue.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/login_fragment_layout">
+
+        <action
+            android:id="@+id/login_to_home_screen"
+            app:destination="@+id/home" />
+
+        <action
+            android:id="@+id/login_to_signup_screen"
+            app:destination="@+id/signupFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.sruthi.purrrescue.ui.signup.SignupFragment"
+        android:label="SignupFragment"
+        tools:layout="@layout/signup_fragment_layout">
+
+        <action
+            android:id="@+id/signup_to_login_screen"
+            app:destination="@+id/loginFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/catDetailsFragment"
+        android:name="com.sruthi.purrrescue.ui.details.CatDetailsFragment"
+        android:label="CatDetailsFragment"
+        tools:layout="@layout/cat_details_fragment_layout"/>
+
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.sruthi.purrrescue.ui.welcome.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/welcome_fragment_layout">
+
+        <action
+            android:id="@+id/home_to_login_screen"
+            app:destination="@+id/loginFragment" />
+
+        <action
+            android:id="@+id/home_to_signup_screen"
+            app:destination="@+id/signupFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.sruthi.purrrescue.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/profile_fragment_layout">
+
+        <action
+            android:id="@+id/profile_to_aboutUs_screen"
+            app:destination="@+id/aboutUsFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.sruthi.purrrescue.ui.aboutUs.AboutUsFragment"
+        android:label="AboutUsFragment"
+        tools:layout="@layout/about_us_fragment_layout"/>
+
+
+    <fragment
+        android:id="@+id/report_cat"
+        android:name="com.sruthi.purrrescue.ui.reports.ReportCatFragment"
+        android:label="ReportCatFragment"
+        tools:layout="@layout/report_cats_fragment_layout"/>
 
 </navigation>

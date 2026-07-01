@@ -1,246 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/off_white"
+    android:fillViewport="true"
     android:paddingHorizontal="15dp"
-    android:paddingVertical="5dp">
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="@drawable/drawable_tape"
-        android:drawableEnd="@drawable/baseline_info_outline_24"
-        android:fontFamily="@font/comic_neue_bold"
-        android:padding="@dimen/margin"
-        android:text="REPORT A CAT"
-        android:drawablePadding="@dimen/margin"
-        android:textAllCaps="true"
-        android:textColor="@color/pantone_blue_aster"
-        android:textSize="@dimen/text_large"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:paddingVertical="5dp"
+    android:scrollbars="none">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clUploadImage"
+        android:id="@+id/clCats"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="@dimen/margin_large"
-        android:background="@drawable/dotted_bg"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHeader">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvUploadImage"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvHeader"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/outline_upload_24"
-            android:padding="@dimen/margin_medium"
-            android:text="Tap To Upload"
-            app:fontFamily="@font/comic_neue_bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@drawable/drawable_tape"
+            android:drawableEnd="@drawable/baseline_info_outline_24"
+            android:drawablePadding="@dimen/margin"
+            android:fontFamily="@font/comic_neue_bold"
+            android:padding="@dimen/margin"
+            android:text="REPORT A CAT"
+            android:textAllCaps="true"
+            android:textColor="@color/pantone_blue_aster"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivCatImage"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clUploadImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_medium"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="@dimen/margin_large"
+            android:background="@drawable/dotted_bg"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tvHeader">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUploadImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/outline_upload_24"
+                android:padding="@dimen/margin_medium"
+                android:text="Tap To Upload"
+                app:fontFamily="@font/comic_neue_bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCatImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_medium"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDescription"
+            style="@style/EditTextFieldOutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:boxStrokeWidth="1dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="60"
+            app:endIconMode="clear_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clUploadImage">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="start"
+                android:hint="Description"
+                android:imeOptions="actionNext"
+                android:inputType="textMultiLine"
+                android:maxLines="60"
+                android:textAlignment="textStart"
+                android:textColor="#383838"
+                android:textColorHint="#404040"
+                android:textSize="@dimen/text_standard"
+                app:fontFamily="@font/comic_neue_bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCaptureLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/comic_neue_bold"
+            android:padding="@dimen/margin_medium"
+            android:text="Capture location"
+            android:textSize="@dimen/button_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilDescription" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCountry"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:boxStrokeColor="@color/pantone_blue_aster"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCaptureLocation">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCountry"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="Country"
+                android:imeOptions="actionNext"
+                android:textColor="#383838"
+                android:textColorHint="#404040"
+                android:textSize="@dimen/text_standard"
+                app:fontFamily="@font/comic_neue_bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilState"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilCountry">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etState"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="State"
+                android:imeOptions="actionNext"
+                android:textColor="#383838"
+                android:textColorHint="#404040"
+                android:textSize="@dimen/text_standard"
+                app:fontFamily="@font/comic_neue_bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCity"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilState">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCity"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="City"
+                android:imeOptions="actionNext"
+                android:textColor="#383838"
+                android:textColorHint="#404040"
+                android:textSize="@dimen/text_standard"
+                app:fontFamily="@font/comic_neue_bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilStreet"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilCity">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etStreet"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="Street"
+                android:imeOptions="actionNext"
+                android:textColor="#383838"
+                android:textColorHint="#404040"
+                android:textSize="@dimen/text_standard"
+                app:fontFamily="@font/comic_neue_bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/comic_neue_bold"
+            android:padding="@dimen/margin_medium"
+            android:text="submit report"
+            android:textSize="@dimen/button_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilStreet" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilDescription"
-        style="@style/EditTextFieldOutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        app:boxCornerRadiusBottomEnd="4dp"
-        app:boxCornerRadiusBottomStart="4dp"
-        app:boxCornerRadiusTopEnd="4dp"
-        app:boxCornerRadiusTopStart="4dp"
-        app:boxStrokeWidth="1dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="60"
-        app:endIconMode="clear_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clUploadImage">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDescription"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="start"
-            android:hint="Description"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine"
-            android:maxLines="60"
-            android:textAlignment="textStart"
-            android:textColor="#383838"
-            android:textColorHint="#404040"
-            android:textSize="@dimen/text_standard"
-            app:fontFamily="@font/comic_neue_bold" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnCaptureLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="@drawable/button_bg"
-        android:fontFamily="@font/comic_neue_bold"
-        android:padding="@dimen/margin_medium"
-        android:text="Capture location"
-        android:textSize="@dimen/button_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilDescription" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCountry"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        app:boxCornerRadiusBottomEnd="4dp"
-        app:boxCornerRadiusBottomStart="4dp"
-        app:boxCornerRadiusTopEnd="4dp"
-        app:boxCornerRadiusTopStart="4dp"
-        app:boxStrokeColor="@color/pantone_blue_aster"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCaptureLocation">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etCountry"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:hint="Country"
-            android:imeOptions="actionNext"
-            android:textColor="#383838"
-            android:textColorHint="#404040"
-            android:textSize="@dimen/text_standard"
-            app:fontFamily="@font/comic_neue_bold" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilState"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        app:boxCornerRadiusBottomEnd="4dp"
-        app:boxCornerRadiusBottomStart="4dp"
-        app:boxCornerRadiusTopEnd="4dp"
-        app:boxCornerRadiusTopStart="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCountry">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etState"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:hint="State"
-            android:imeOptions="actionNext"
-            android:textColor="#383838"
-            android:textColorHint="#404040"
-            android:textSize="@dimen/text_standard"
-            app:fontFamily="@font/comic_neue_bold" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCity"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        app:boxCornerRadiusBottomEnd="4dp"
-        app:boxCornerRadiusBottomStart="4dp"
-        app:boxCornerRadiusTopEnd="4dp"
-        app:boxCornerRadiusTopStart="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilState">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etCity"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:hint="City"
-            android:imeOptions="actionNext"
-            android:textColor="#383838"
-            android:textColorHint="#404040"
-            android:textSize="@dimen/text_standard"
-            app:fontFamily="@font/comic_neue_bold" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilStreet"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        app:boxCornerRadiusBottomEnd="4dp"
-        app:boxCornerRadiusBottomStart="4dp"
-        app:boxCornerRadiusTopEnd="4dp"
-        app:boxCornerRadiusTopStart="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCity">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etStreet"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:hint="Street"
-            android:imeOptions="actionNext"
-            android:textColor="#383838"
-            android:textColorHint="#404040"
-            android:textSize="@dimen/text_standard"
-            app:fontFamily="@font/comic_neue_bold" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="@drawable/button_bg"
-        android:fontFamily="@font/comic_neue_bold"
-        android:padding="@dimen/margin_medium"
-        android:text="submit report"
-        android:textSize="@dimen/button_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilStreet" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
