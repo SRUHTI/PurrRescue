@@ -37,7 +37,7 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
         val toolTip = Balloon.Builder(requireContext())
             .setWidthRatio(0.5f)
             .setHeight(BalloonSizeSpec.WRAP)
-            .setText("Help us rescue this cat: upload a clear photo, capture the exact location, and describe their condition or behavior.")
+            .setText("Help us rescue this cat by: uploading photo, capturing location and describing their condition or behavior.")
             .setTextSize(13f)
             .setArrowSize(10)
             .setTextColor(resources.getColor(R.color.black))

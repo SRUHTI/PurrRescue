@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
 import java.io.File
@@ -55,6 +56,10 @@ object Utils {
             putExtra(Intent.EXTRA_TEXT, "Join me on PurrRescue and help stray cats find homes! $appLink")
         }
         context.startActivity(Intent.createChooser(shareIntent, "Share PurrRescue"))
+    }
+
+    fun showToast(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
 }

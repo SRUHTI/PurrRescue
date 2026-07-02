@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sruthi.purrrescue.data.model.Cat
 import com.sruthi.purrrescue.databinding.CatListLayoutBinding
 
-class CatListAdapter(private val cats: MutableList<Cat>): RecyclerView.Adapter<CatListAdapter.CatViewHolder>() {
+class CatListAdapter(private val cats: List<Cat>): RecyclerView.Adapter<CatListAdapter.CatViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -37,7 +37,7 @@ class CatListAdapter(private val cats: MutableList<Cat>): RecyclerView.Adapter<C
 
     }
 
-    fun updateCatList(newCats: MutableList<Cat>) {
+    fun updateCatList(newCats: List<Cat>) {
 
     }
 

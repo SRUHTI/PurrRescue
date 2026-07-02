@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_medium">10dp</dimen>
-        <dimen name="margin_large">15dp</dimen>
-        <dimen name="margin">5dp</dimen>
+    <dimen name="margin_large">15dp</dimen>
+    <dimen name="margin">5dp</dimen>
     <dimen name="button_size">13sp</dimen>
 
     <!-- Text -->
