@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sruthi.purrrescue.data.model.Cat
 import com.sruthi.purrrescue.databinding.CatListLayoutBinding
 
-class CatListAdapter(private val cats: List<Cat>): RecyclerView.Adapter<CatListAdapter.CatViewHolder>() {
+class CatListAdapter(
+    private val cats: List<Cat>,
+    private val onItemClick: (Cat) -> Unit
+): RecyclerView.Adapter<CatListAdapter.CatViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -25,7 +28,9 @@ class CatListAdapter(private val cats: List<Cat>): RecyclerView.Adapter<CatListA
         holder.binding.tvCatDescription.text = data.description
         holder.binding.tvLocation.text = data.country + ", " + data.state + ", " + data.city
         holder.binding.tvStatus.text = data.status
-
+        holder.binding.root.setOnClickListener {
+            onItemClick(data)
+        }
 
     }
 

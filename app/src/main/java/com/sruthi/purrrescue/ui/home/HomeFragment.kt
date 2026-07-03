@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.sruthi.purrrescue.adapter.CatListAdapter
 import com.sruthi.purrrescue.databinding.HomeFragmentLayoutBinding
@@ -59,7 +60,10 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.cat.observe(viewLifecycleOwner) { cats ->
-            binding.rvCatList.adapter = CatListAdapter(cats)
+            binding.rvCatList.adapter = CatListAdapter(cats) {
+                val action = HomeFragmentDirections.homeToCatsDetailScreen(it)
+                findNavController().navigate(action)
+            }
         }
 
         viewModel.error.observe(viewLifecycleOwner) { message ->

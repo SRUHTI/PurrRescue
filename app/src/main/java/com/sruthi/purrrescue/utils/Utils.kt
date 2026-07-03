@@ -11,6 +11,9 @@ import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
 import java.io.File
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 object Utils {
     fun View.toBitmap(): Bitmap {
@@ -61,5 +64,11 @@ object Utils {
     fun showToast(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
+
+    fun formatDate(timestamp: Long): String {
+        val sdf = SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
+        return sdf.format(Date(timestamp))
+    }
+
 
 }

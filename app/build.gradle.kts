@@ -57,6 +57,8 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.messaging.ktx)
     implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+    implementation("com.google.firebase:firebase-storage-ktx")
+
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.play.services.maps)

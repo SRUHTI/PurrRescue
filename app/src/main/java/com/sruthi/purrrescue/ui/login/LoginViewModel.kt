@@ -1,4 +1,30 @@
 package com.sruthi.purrrescue.ui.login
 
-class LoginViewModel {
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.sruthi.purrrescue.data.repository.AuthRepository
+import kotlinx.coroutines.launch
+
+class LoginViewModel(
+    private val repository: AuthRepository = AuthRepository()
+) : ViewModel() {
+
+    private val _success = MutableLiveData<Boolean>()
+    val success: LiveData<Boolean> get() = _success
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
+
+    fun login(email: String, password: String) {
+        viewModelScope.launch {
+            val result = repository.login(email, password)
+            if (result.isSuccess) {
+                _success.value = true
+            } else {
+                _error.value = result.exceptionOrNull()?.message ?: "Login failed"
+            }
+        }
+    }
 }

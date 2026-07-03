@@ -26,6 +26,18 @@ class CatDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val args = CatDetailsFragmentArgs.fromBundle(requireArguments())
+        val cat = args.catDetails
+
+
+        binding.apply {
+            tvHeaderCatDetails.text = "Cat Details - ID: ${cat.catId}"
+            tvCatDescription.text = cat.description
+            tvLocation.text = "${cat.street}, ${cat.city}"
+            tvStatus.text = cat.status
+            tvReportedByTimeLine.text = Utils.formatDate(cat.reportedAt)
+            tvRescuedByHeader.text = cat.rescuedAt?.let { Utils.formatDate(it) } ?: "Not yet rescued"
+        }
 
         binding.tvHeaderCatDetails.setOnClickListener {
             Utils.shareViewAsImage(requireContext(), binding.clCatDetailsLayout)
