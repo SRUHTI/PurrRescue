@@ -1,7 +1,6 @@
 package com.sruthi.purrrescue.ui.reports
 
 import android.Manifest
-import android.R
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.net.Uri
@@ -13,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -29,6 +29,7 @@ import com.sruthi.purrrescue.databinding.ReportCatsFragmentLayoutBinding
 import com.sruthi.purrrescue.utils.Utils
 import java.util.Locale
 import java.util.UUID
+import com.sruthi.purrrescue.R
 
 class ReportCatFragment: Fragment(), OnMapReadyCallback {
 
@@ -91,7 +92,7 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
             .setText("Help us rescue this cat by: uploading photo, capturing location and describing their condition or behavior.")
             .setTextSize(13f)
             .setArrowSize(10)
-            .setTextColor(resources.getColor(R.color.black))
+            .setTextColor(resources.getColor(R.color.orange))
             .setArrowOrientation(ArrowOrientation.TOP)
             .setArrowPosition(0.5f)
             .setWidthRatio(0.85f)
@@ -110,7 +111,7 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
 
         binding.btnSubmit.setOnClickListener {
             val cat = Cat(
-                catId = "1",
+                catId = UUID.randomUUID().toString(),   // was: "1"
                 description = binding.etDescription.text.toString(),
                 country = binding.etCountry.text.toString(),
                 state = binding.etState.text.toString(),
@@ -124,6 +125,7 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
             )
 
             if (photoUri != null) {
+                binding.btnSubmit.isEnabled = false   // guard against double-tap
                 viewModel.reportCat(cat, photoUri!!)
             } else {
                 Utils.showToast(requireContext(), "Please upload a photo first")
@@ -138,10 +140,17 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
 
 
         viewModel.success.observe(viewLifecycleOwner) {
-            if (it) Utils.showToast(requireContext(), "Cat reported successfully!")
+            if (it) {
+                Utils.showToast(requireContext(), "Cat reported successfully!")
+                findNavController().popBackStack(R.id.home, false)
+            } else {
+                binding.btnSubmit.isEnabled = true
+            }
         }
+
         viewModel.error.observe(viewLifecycleOwner) { message ->
             Utils.showToast(requireContext(), message)
+            binding.btnSubmit.isEnabled = true
         }
 
     }

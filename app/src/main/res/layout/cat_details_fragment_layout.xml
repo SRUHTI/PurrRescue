@@ -1,40 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/clCatDetailsLayout"
-    android:paddingHorizontal="15dp"
     android:background="@color/off_white"
-    android:paddingVertical="10dp">
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clCatDetailsLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvHeaderCatDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
+            android:background="@drawable/drawable_tape"
+            android:drawableEnd="@drawable/outline_share_24"
             android:fontFamily="@font/comic_neue_bold"
+            android:padding="@dimen/margin"
             android:text="Cat Details - ID: PR-0001"
             android:textAllCaps="true"
             android:textColor="@color/pantone_blue_aster"
-            android:background="@drawable/drawable_tape"
-            android:padding="@dimen/margin"
             android:textSize="@dimen/text_large"
-            android:drawableEnd="@drawable/outline_share_24"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <include
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/includeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeaderCatDetails">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivRecOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/alice_blue"
+                    android:src="@drawable/image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/tape_top"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="-50dp"
+                android:alpha="0.5"
+                android:background="@drawable/drawable_tape"
+                android:rotation="45"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/tape_bottom"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="-50dp"
+                android:layout_marginBottom="-10dp"
+                android:alpha="0.5"
+                android:background="@drawable/drawable_tape"
+                android:rotation="45"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--<include
             android:id="@+id/includeImageView"
             layout="@layout/cat_image_view"
             android:layout_width="match_parent"
@@ -42,7 +95,7 @@
             android:layout_marginTop="@dimen/margin_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHeaderCatDetails" />
+            app:layout_constraintTop_toBottomOf="@+id/tvHeaderCatDetails" />-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvCatDetails"
@@ -52,6 +105,7 @@
             android:backgroundTint="@color/off_white"
             app:cardCornerRadius="6dp"
             app:cardElevation="@dimen/margin"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/includeImageView">
 
@@ -63,12 +117,13 @@
                 android:divider="@color/pantone_blue_aster"
                 android:dividerHeight="14dp"
                 android:orientation="vertical"
-                android:showDividers="middle">
+                android:showDividers="middle"
+                android:stretchColumns="0">
 
                 <TableRow
                     android:id="@+id/trDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal">
 
@@ -79,10 +134,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/comic_neue_bold"
                         android:padding="@dimen/margin"
-                        android:text="Description :"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:text="Description :" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvCatDescription"
@@ -126,15 +178,14 @@
                     android:id="@+id/trMap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
+                    android:layout_margin="10dp"
                     android:orientation="horizontal">
 
                     <fragment
                         android:id="@+id/mapFragment"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:layout_margin="@dimen/margin" />
+                        android:layout_height="220dp" />
 
                 </TableRow>
 
@@ -168,8 +219,6 @@
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -177,6 +226,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/comic_neue_bold"
+                        android:gravity="center"
                         android:padding="@dimen/margin"
                         android:text="Rescue Timeline"
                         android:textStyle="bold" />
@@ -247,15 +297,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large"
             android:background="@drawable/button_bg"
             android:fontFamily="@font/comic_neue_bold"
             android:padding="@dimen/margin_medium"
             android:text="Mark Rescued"
             android:textSize="@dimen/button_size"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvCatDetails" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -7,118 +7,141 @@
     android:paddingHorizontal="15dp"
     android:paddingVertical="5dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clAccount"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvProfile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_large"
-        android:orientation="vertical"
-        android:padding="@dimen/margin_large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivCatImage"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:src="@drawable/kitty"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_large"
-            android:text="sruthi s"
-            android:textSize="@dimen/text_large"
-            app:fontFamily="@font/comic_neue_bold"
-            app:layout_constraintStart_toEndOf="@+id/ivCatImage"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_large"
-            android:text="sruthiswetha2001@gmail.com"
-            android:textSize="@dimen/text_large"
-            app:fontFamily="@font/comic_neue_bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivCatImage" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clOptions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_large"
-        android:orientation="vertical"
-        android:padding="@dimen/margin_large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clAccount">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvMyReports"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:background="@drawable/drawable_tape"
-            android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
-            android:drawablePadding="@dimen/margin"
-            android:fontFamily="@font/comic_neue_bold"
-            android:gravity="center|start"
-            android:padding="@dimen/margin_large"
-            android:text="My Reports"
-            android:textColor="@color/pantone_blue_aster"
-            android:textSize="@dimen/text_large"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvInvite"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:background="@drawable/drawable_tape"
-            android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
-            android:drawablePadding="@dimen/margin"
-            android:fontFamily="@font/comic_neue_bold"
-            android:gravity="center|start"
-            android:padding="@dimen/margin_large"
-            android:text="Invite Friends"
-            android:textColor="@color/pantone_blue_aster"
-            android:textSize="@dimen/text_large"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMyReports" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:padding="@dimen/margin_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvWhoWeAre"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:background="@drawable/drawable_tape"
-            android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
-            android:drawablePadding="@dimen/margin"
-            android:fontFamily="@font/comic_neue_bold"
-            android:gravity="center|start"
-            android:padding="@dimen/margin_large"
-            android:text="Who We Are"
-            android:textColor="@color/pantone_blue_aster"
-            android:textSize="@dimen/text_large"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvInvite" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCatImage"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/kitty"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="sruthi s"
+                    android:textSize="@dimen/text_large"
+                    app:fontFamily="@font/comic_neue_bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivCatImage"
+                    app:layout_constraintTop_toTopOf="@+id/ivCatImage" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="sruthiswetha2001@gmail.com"
+                    android:textSize="@dimen/text_standard"
+                    app:fontFamily="@font/comic_neue_bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivCatImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivCatImage" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:padding="@dimen/margin_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clAccount">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMyReports"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:background="@drawable/drawable_tape"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/margin"
+                    android:fontFamily="@font/comic_neue_bold"
+                    android:gravity="center|start"
+                    android:padding="@dimen/margin_large"
+                    android:text="My Reports"
+                    android:textColor="@color/pantone_blue_aster"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInvite"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:background="@drawable/drawable_tape"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/margin"
+                    android:fontFamily="@font/comic_neue_bold"
+                    android:gravity="center|start"
+                    android:padding="@dimen/margin_large"
+                    android:text="Invite Friends"
+                    android:textColor="@color/pantone_blue_aster"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMyReports" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvWhoWeAre"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:background="@drawable/drawable_tape"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/margin"
+                    android:fontFamily="@font/comic_neue_bold"
+                    android:gravity="center|start"
+                    android:padding="@dimen/margin_large"
+                    android:text="Who We Are"
+                    android:textColor="@color/pantone_blue_aster"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvInvite" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUp"

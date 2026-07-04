@@ -102,6 +102,14 @@
         android:id="@+id/report_cat"
         android:name="com.sruthi.purrrescue.ui.reports.ReportCatFragment"
         android:label="ReportCatFragment"
-        tools:layout="@layout/report_cats_fragment_layout"/>
+        tools:layout="@layout/report_cats_fragment_layout">
+
+        <action
+            android:id="@+id/action_reportCat_to_home"
+            app:destination="@id/home"
+            app:popUpTo="@id/home"
+            app:popUpToInclusive="true" />
+
+    </fragment>
 
 </navigation>

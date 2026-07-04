@@ -39,7 +39,6 @@
             android:layout_height="140dp"
             android:layout_marginTop="@dimen/margin_large"
             android:background="@drawable/dotted_bg"
-            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvHeader">
@@ -59,9 +58,10 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivCatImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_margin="@dimen/margin_medium"
+                android:scaleType="centerCrop"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDescription"
             style="@style/EditTextFieldOutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             app:boxCornerRadiusBottomEnd="4dp"
@@ -84,6 +84,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="60"
             app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/clUploadImage">
 
@@ -91,7 +92,7 @@
                 android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:gravity="start"
+                android:gravity="top|start"
                 android:hint="Description"
                 android:imeOptions="actionNext"
                 android:inputType="textMultiLine"
@@ -120,7 +121,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilCountry"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             app:boxCornerRadiusBottomEnd="4dp"
@@ -128,6 +129,7 @@
             app:boxCornerRadiusTopEnd="4dp"
             app:boxCornerRadiusTopStart="4dp"
             app:boxStrokeColor="@color/pantone_blue_aster"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnCaptureLocation">
 
@@ -150,13 +152,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilState"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             app:boxCornerRadiusBottomEnd="4dp"
             app:boxCornerRadiusBottomStart="4dp"
             app:boxCornerRadiusTopEnd="4dp"
             app:boxCornerRadiusTopStart="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilCountry">
 
@@ -176,17 +179,17 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilCity"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             app:boxCornerRadiusBottomEnd="4dp"
             app:boxCornerRadiusBottomStart="4dp"
             app:boxCornerRadiusTopEnd="4dp"
             app:boxCornerRadiusTopStart="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilState">
 
@@ -206,17 +209,17 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilStreet"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             app:boxCornerRadiusBottomEnd="4dp"
             app:boxCornerRadiusBottomStart="4dp"
             app:boxCornerRadiusTopEnd="4dp"
             app:boxCornerRadiusTopStart="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilCity">
 
@@ -241,11 +244,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_large"
             android:background="@drawable/button_bg"
             android:fontFamily="@font/comic_neue_bold"
             android:padding="@dimen/margin_medium"
             android:text="submit report"
             android:textSize="@dimen/button_size"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilStreet" />
