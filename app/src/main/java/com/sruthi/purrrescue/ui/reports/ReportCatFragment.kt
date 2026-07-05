@@ -10,16 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
 import com.skydoves.balloon.ArrowOrientation
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
@@ -30,8 +28,9 @@ import com.sruthi.purrrescue.utils.Utils
 import java.util.Locale
 import java.util.UUID
 import com.sruthi.purrrescue.R
+import com.sruthi.purrrescue.base.BaseFragment
 
-class ReportCatFragment: Fragment(), OnMapReadyCallback {
+class ReportCatFragment: BaseFragment() {
 
     private lateinit var binding: ReportCatsFragmentLayoutBinding
     private val viewModel: ReportCatViewModel by viewModels()
@@ -40,7 +39,6 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var currentLat: Double = 0.0
     private var currentLng: Double = 0.0
-    private var googleMap: GoogleMap? = null
 
     private val pickImage =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -51,7 +49,6 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
                 binding.tvUploadImage.visibility = View.GONE
             }
         }
-
 
     private val requestLocationPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
@@ -67,24 +64,34 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = ReportCatsFragmentLayoutBinding.inflate(inflater, container, false)
-
-
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
+        binding.apply {
+            textWatcher(tilCountry, etCountry)
+            textWatcher(tilState, etState)
+            textWatcher(tilCity, etCity)
+            textWatcher(tilStreet, etStreet)
+            textWatcher(tilDescription, etDescription)
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            if (loading) showLoading() else hideLoading()
+        }
 
         binding.tvUploadImage.setOnClickListener {
             pickImage.launch("image/*")
         }
 
+        binding.ivArrowBack.setOnClickListener {
+            findNavController().popBackStack(R.id.home, false)
+        }
 
         val toolTip = Balloon.Builder(requireContext())
             .setWidthRatio(0.5f)
@@ -103,41 +110,36 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
             .setLifecycleOwner(viewLifecycleOwner)
             .build()
 
-
-        binding.tvHeader.setOnClickListener {
+        binding.ivInfo.setOnClickListener {
             toolTip.showAlignTop(it)
         }
 
-
         binding.btnSubmit.setOnClickListener {
+            if (!validateForm()) return@setOnClickListener
+
             val cat = Cat(
-                catId = UUID.randomUUID().toString(),   // was: "1"
-                description = binding.etDescription.text.toString(),
-                country = binding.etCountry.text.toString(),
-                state = binding.etState.text.toString(),
-                city = binding.etCity.text.toString(),
-                street = binding.etStreet.text.toString(),
+                catId = UUID.randomUUID().toString(),
+                description = binding.etDescription.text.toString().trim(),
+                country = binding.etCountry.text.toString().trim(),
+                state = binding.etState.text.toString().trim(),
+                city = binding.etCity.text.toString().trim(),
+                street = binding.etStreet.text.toString().trim(),
                 latitude = currentLat,
                 longitude = currentLng,
                 status = "Reported",
-                reportedBy = "User123",
+                reportedBy = FirebaseAuth.getInstance().currentUser?.displayName
+                    ?: FirebaseAuth.getInstance().currentUser?.email
+                    ?: "unknown",
                 reportedAt = System.currentTimeMillis()
             )
 
-            if (photoUri != null) {
-                binding.btnSubmit.isEnabled = false   // guard against double-tap
-                viewModel.reportCat(cat, photoUri!!)
-            } else {
-                Utils.showToast(requireContext(), "Please upload a photo first")
-            }
+            binding.btnSubmit.isEnabled = false
+            viewModel.reportCat(cat, photoUri!!, requireContext())
         }
-
 
         binding.btnCaptureLocation.setOnClickListener {
             requestLocationPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
-
-
 
         viewModel.success.observe(viewLifecycleOwner) {
             if (it) {
@@ -152,9 +154,7 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
             Utils.showToast(requireContext(), message)
             binding.btnSubmit.isEnabled = true
         }
-
     }
-
 
     private fun captureLocation() {
         if (ActivityCompat.checkSelfPermission(
@@ -167,39 +167,70 @@ class ReportCatFragment: Fragment(), OnMapReadyCallback {
                     currentLat = it.latitude
                     currentLng = it.longitude
 
-                    val catLocation = LatLng(currentLat, currentLng)
-                    googleMap?.clear()
-                    googleMap?.addMarker(MarkerOptions().position(catLocation).title("Cat Location"))
-                    googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(catLocation, 15f))
-
-                    val geocoder = Geocoder(requireContext(), Locale.getDefault())
-                    val addresses = geocoder.getFromLocation(currentLat, currentLng, 1)
-                    addresses?.firstOrNull()?.let { addr ->
-                        binding.etCountry.setText(addr.countryName ?: "")
-                        binding.etState.setText(addr.adminArea ?: "")
-                        binding.etCity.setText(addr.locality ?: "")
-                        binding.etStreet.setText(addr.thoroughfare ?: "")
+                    try {
+                        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                        val addresses = geocoder.getFromLocation(currentLat, currentLng, 1)
+                        addresses?.firstOrNull()?.let { addr ->
+                            binding.etCountry.setText(addr.countryName ?: "")
+                            binding.etState.setText(addr.adminArea ?: "")
+                            binding.etCity.setText(addr.locality ?: addr.subAdminArea ?: "")
+                            binding.etStreet.setText(
+                                addr.thoroughfare ?: addr.subLocality ?: addr.featureName ?: ""
+                            )
+                        } ?: Utils.showToast(requireContext(), "Couldn't resolve address for this location")
+                    } catch (e: Exception) {
+                        Utils.showToast(requireContext(), "Address lookup failed, please enter manually")
                     }
 
                     Utils.showToast(requireContext(), "Location captured!")
-                }
+                } ?: Utils.showToast(requireContext(), "Couldn't get current location, please try again")
             }
         }
     }
 
+    private fun validateForm(): Boolean {
 
-    override fun onMapReady(map: GoogleMap) {
-        googleMap = map
-        googleMap?.uiSettings?.isZoomControlsEnabled = true
-
-        val catLocation = LatLng(currentLat, currentLng)
-        googleMap?.addMarker(MarkerOptions().position(catLocation).title("Reported Cat"))
-        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(catLocation, 15f))
-
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            map.isMyLocationEnabled = true
+        if (photoUri == null) {
+            Utils.showToast(requireContext(), "Please upload a photo first")
+            return false
         }
+
+        if (currentLat == 0.0 && currentLng == 0.0) {
+            Utils.showToast(requireContext(), "Please capture the cat's location")
+            return false
+        }
+
+        if (binding.etCountry.text.toString().trim().isEmpty()) {
+            binding.tilCountry.error = "Country is required"
+            return false
+        }
+
+        if (binding.etState.text.toString().trim().isEmpty()) {
+            binding.tilState.error = "State is required"
+            return false
+        }
+
+        if (binding.etCity.text.toString().trim().isEmpty()) {
+            binding.tilCity.error = "City is required"
+            return false
+        }
+
+        if (binding.etStreet.text.toString().trim().isEmpty()) {
+            binding.tilStreet.error = "Street is required"
+            return false
+        }
+
+        if (binding.etDescription.text.toString().trim().isEmpty()) {
+            binding.tilDescription.error = "Please describe the cat's condition or behavior"
+            return false
+        }
+
+        return true
     }
 
-
+    private fun textWatcher(til: TextInputLayout, et: TextInputEditText) {
+        et.doOnTextChanged { text, start, before, count ->
+            til.error = null
+        }
+    }
 }

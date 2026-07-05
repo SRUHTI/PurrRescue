@@ -19,5 +19,5 @@ data class Cat(
     val reportedAt: Long = 0L,
 
     val rescuedBy: String? = null,
-    val rescuedAt: Long? = null
+    val rescuedOn: Long? = null
 ): Parcelable

@@ -2,14 +2,18 @@ package com.sruthi.purrrescue.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.sruthi.purrrescue.R
 import com.sruthi.purrrescue.data.model.Cat
 import com.sruthi.purrrescue.databinding.CatListLayoutBinding
+import com.sruthi.purrrescue.utils.Constants
 
 class CatListAdapter(
-    private val cats: List<Cat>,
+    private var cats: List<Cat>,
     private val onItemClick: (Cat) -> Unit
-): RecyclerView.Adapter<CatListAdapter.CatViewHolder>() {
+) : RecyclerView.Adapter<CatListAdapter.CatViewHolder>() {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -18,11 +22,7 @@ class CatListAdapter(
         return CatViewHolder(binding)
     }
 
-    override fun onBindViewHolder(
-        holder: CatViewHolder,
-        position: Int
-    ) {
-
+    override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         val data = cats[position]
 
         holder.binding.tvCatDescription.text = data.description
@@ -32,19 +32,24 @@ class CatListAdapter(
             onItemClick(data)
         }
 
+        when (data.status) {
+            Constants.CAT_REPORTED -> {
+                holder.binding.tvStatus.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.red))
+            }
+
+            Constants.CAT_RESCUED -> {
+                holder.binding.tvStatus.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.green))
+            }
+        }
+
     }
 
-    override fun getItemCount(): Int {
-        return cats.size
-    }
-
-    class CatViewHolder(val binding: CatListLayoutBinding): RecyclerView.ViewHolder(binding.root) {
-
-    }
+    override fun getItemCount(): Int = cats.size
 
     fun updateCatList(newCats: List<Cat>) {
-
+        cats = newCats
+        notifyDataSetChanged()
     }
 
-
+    class CatViewHolder(val binding: CatListLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 }

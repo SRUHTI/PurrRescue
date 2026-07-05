@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
-    android:paddingHorizontal="15dp"
-    android:paddingVertical="5dp">
+    android:background="@color/off_white">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsvProfile"
@@ -13,8 +11,8 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="none"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnSignUp">
+        app:layout_constraintBottom_toTopOf="@+id/btnLogOut"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -34,10 +32,10 @@
                     android:id="@+id/ivCatImage"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
-                    android:src="@drawable/kitty"
+                    android:src="@drawable/happy_kitty"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvUserName"
@@ -48,6 +46,7 @@
                     android:maxLines="1"
                     android:text="sruthi s"
                     android:textSize="@dimen/text_large"
+                    android:textColor="@color/orange"
                     app:fontFamily="@font/comic_neue_bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ivCatImage"
@@ -62,6 +61,7 @@
                     android:maxLines="1"
                     android:text="sruthiswetha2001@gmail.com"
                     android:textSize="@dimen/text_standard"
+                    android:textColor="@color/grey"
                     app:fontFamily="@font/comic_neue_bold"
                     app:layout_constraintBottom_toBottomOf="@+id/ivCatImage"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -144,13 +144,14 @@
     </androidx.core.widget.NestedScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnLogOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_large"
         android:background="@drawable/button_bg"
         android:fontFamily="@font/comic_neue_bold"
         android:padding="@dimen/margin_medium"
+        android:layout_margin="@dimen/margin_large"
         android:stateListAnimator="@null"
         android:text="Logout"
         android:textColor="@color/pantone_blue_aster"

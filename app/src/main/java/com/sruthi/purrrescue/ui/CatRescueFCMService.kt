@@ -35,7 +35,7 @@ class CatRescueFCMService : FirebaseMessagingService() {
 
         val pendingIntent = PendingIntent.getActivity(
             this,
-            reportId.hashCode(), // unique per cat so multiple notifications don't overwrite each other
+            reportId.hashCode(),
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )

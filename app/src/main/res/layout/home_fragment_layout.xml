@@ -4,61 +4,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
-    android:paddingHorizontal="10dp"
-    android:paddingVertical="5dp">
+    android:background="@color/off_white">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tvHeader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="@drawable/drawable_tape"
-        android:fontFamily="@font/comic_neue_bold"
-        android:padding="@dimen/margin"
-        android:text="Helping Stray Cats Find Safety"
-        android:textAllCaps="true"
-        android:textColor="@color/pantone_blue_aster"
-        android:textSize="@dimen/text_large"
-        android:textStyle="bold"
+        android:layout_height="52dp"
+        android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivFilter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:fontFamily="@font/comic_neue_bold"
-        android:padding="@dimen/margin"
-        android:src="@drawable/outline_filter_list_24"
-        app:layout_constraintBottom_toBottomOf="@+id/tvHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvGreetings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:fontFamily="@font/comic_neue_bold"
+            android:text="Good Morning, Sruthi!"
+            android:textAllCaps="false"
+            android:textColor="@color/pantone_blue_aster"
+            android:textSize="@dimen/text_very_large"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+     <!--   <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/outline_filter_list_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.5"
+        android:background="#99B3B3B3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
         android:backgroundTint="@color/pale_primrose"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHeader"
+        app:layout_constraintTop_toBottomOf="@+id/view"
         app:tabIndicatorColor="@color/orange"
         app:tabSelectedTextColor="@color/orange"
         app:tabTextColor="@color/pantone_blue_aster" />
+
+    <View
+        android:id="@+id/viewTwo"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.5"
+        android:background="#99B3B3B3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCatList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        app:layout_constraintTop_toBottomOf="@+id/viewTwo"
         tools:itemCount="6"
         tools:listitem="@layout/cat_list_layout" />
+
+    <LinearLayout
+        android:id="@+id/llNoCatFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ivEmpty"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/cat_food" />
+
+        <TextView
+            android:id="@+id/tvEmptyMessageOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/no_rescues_yet"
+            android:textSize="@dimen/text_large"
+            android:fontFamily="@font/comic_neue_bold"
+            android:textColor="@color/pantone_blue_aster" />
+
+        <TextView
+            android:id="@+id/tvEmptyMessageTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/help_save_a_cat_to_see_it_here"
+            android:textSize="@dimen/text_large"
+            android:fontFamily="@font/comic_neue_bold"
+            android:textColor="@color/pantone_blue_aster" />
+
+        <ImageView
+            android:id="@+id/ivDownArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/arrow_downward"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

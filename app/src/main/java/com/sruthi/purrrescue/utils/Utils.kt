@@ -16,10 +16,9 @@ import java.util.Date
 import java.util.Locale
 
 object Utils {
-    fun View.toBitmap(): Bitmap {
+    private fun View.toBitmap(): Bitmap {
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
-        // If your screen has a background color/drawable, draw it first so you don't get a transparent/black bg
         background?.draw(canvas) ?: canvas.drawColor(Color.WHITE)
         draw(canvas)
         return bitmap

@@ -11,15 +11,20 @@ class SignupViewModel(
     private val repository: AuthRepository = AuthRepository()
 ) : ViewModel() {
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
     private val _success = MutableLiveData<Boolean>()
     val success: LiveData<Boolean> get() = _success
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
-    fun signUp(email: String, password: String) {
+    fun signUp(email: String, password: String, name: String) {
         viewModelScope.launch {
-            val result = repository.signUp(email, password)
+            _isLoading.value = true
+            val result = repository.signUp(email, password, name)
+            _isLoading.value = false
             if (result.isSuccess) {
                 _success.value = true
             } else {

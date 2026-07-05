@@ -18,226 +18,233 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- App Logo / Icon -->
-    <ImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/cat"
-        android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <!-- Welcome Title -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/comic_neue_bold"
-        android:text="Welcome back"
-        android:textColor="@color/pantone_blue_aster"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivLogo" />
-
-    <!-- Subtitle -->
-    <TextView
-        android:id="@+id/tvSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="Sign in to continue"
-        android:textColor="@color/orange"
-        android:textSize="@dimen/text_large"        android:fontFamily="@font/comic_neue_bold"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
-    <!-- Card container for form -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardForm"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="30dp"
-        app:cardBackgroundColor="#0000"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="24dp">
+            android:layout_height="wrap_content">
 
-            <!-- Email Label -->
+            <!-- App Logo / Icon -->
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/cat"
+                android:padding="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Welcome Title -->
             <TextView
-                android:id="@+id/tvEmailLabel"
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:fontFamily="@font/comic_neue_bold"
-                android:letterSpacing="0.08"
-                android:text="Email"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:text="Welcome back"
+                android:textColor="@color/pantone_blue_aster"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivLogo" />
 
-            <!-- Email Input -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilEmail"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/comic_neue_bold"
-                    android:hint="E-mail"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#383838"
-
-                    android:textColorHint="#404040"
-                    android:textSize="@dimen/text_standard" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Password Label -->
+            <!-- Subtitle -->
             <TextView
-                android:id="@+id/tvPasswordLabel"
+                android:id="@+id/tvSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="6dp"
+                android:text="Sign in to continue"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/text_large"
                 android:fontFamily="@font/comic_neue_bold"
-                android:letterSpacing="0.08"
-                android:text="Password"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-            <!-- Password Input -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPassword"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+            <!-- Card container for form -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardForm"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="#606060">
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="#0000"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/comic_neue_bold"
-                    android:hint="••••••••"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="#383838"
-                    android:textColorHint="#404040"
-                    android:textSize="15sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Login Button -->
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:background="@drawable/button_bg"
-                android:fontFamily="@font/comic_neue_bold"
-                android:padding="@dimen/margin_medium"
-                android:stateListAnimator="@null"
-                android:text="Log In"
-                android:textColor="@color/pantone_blue_aster"
-                android:textSize="@dimen/text_standard" />
-
-            <!-- Divider -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="#2A2A2A" />
-
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:fontFamily="@font/comic_neue_bold"
-                    android:text="OR"
-                    android:textColor="#404040"
-                    android:textSize="11sp" />
+                    android:orientation="vertical"
+                    android:padding="24dp">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="#2A2A2A" />
+                    <!-- Email Label -->
+                    <TextView
+                        android:id="@+id/tvEmailLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/comic_neue_bold"
+                        android:letterSpacing="0.08"
+                        android:text="Email"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
 
-            </LinearLayout>
+                    <!-- Email Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilEmail"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp">
 
-            <!-- Sign Up Button -->
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/button_bg"
-                android:fontFamily="@font/comic_neue_bold"
-                android:stateListAnimator="@null"
-                android:text="Sign Up"
-                android:textColor="@color/pantone_blue_aster"
-                android:textSize="@dimen/text_standard" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comic_neue_bold"
+                            android:hint="E-mail"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:paddingHorizontal="16dp"
+                            android:textColor="#383838"
+                            android:textColorHint="#404040"
+                            android:textSize="@dimen/text_standard" />
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-    <View
-        android:id="@+id/accentCircleBottom"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="-70dp"
-        android:layout_marginBottom="-80dp"
-        android:alpha="0.1"
-        android:background="@drawable/bg_circle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+                    <!-- Password Label -->
+                    <TextView
+                        android:id="@+id/tvPasswordLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/comic_neue_bold"
+                        android:letterSpacing="0.08"
+                        android:text="Password"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                    <!-- Password Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilPassword"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="#606060">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comic_neue_bold"
+                            android:hint="••••••••"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:paddingHorizontal="16dp"
+                            android:textColor="#383838"
+                            android:textColorHint="#404040"
+                            android:textSize="15sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Login Button -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:background="@drawable/button_bg"
+                        android:fontFamily="@font/comic_neue_bold"
+                        android:padding="@dimen/margin_medium"
+                        android:stateListAnimator="@null"
+                        android:text="Log In"
+                        android:textColor="@color/pantone_blue_aster"
+                        android:textSize="@dimen/text_standard" />
+
+                    <!-- Divider -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"
+                            android:background="#2A2A2A" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="12dp"
+                            android:fontFamily="@font/comic_neue_bold"
+                            android:text="OR"
+                            android:textColor="#404040"
+                            android:textSize="11sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"
+                            android:background="#2A2A2A" />
+
+                    </LinearLayout>
+
+                    <!-- Sign Up Button -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSignUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/button_bg"
+                        android:fontFamily="@font/comic_neue_bold"
+                        android:stateListAnimator="@null"
+                        android:text="Sign Up"
+                        android:textColor="@color/pantone_blue_aster"
+                        android:textSize="@dimen/text_standard" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:id="@+id/accentCircleBottom"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_marginStart="-70dp"
+                android:layout_marginBottom="-80dp"
+                android:alpha="0.1"
+                android:background="@drawable/bg_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

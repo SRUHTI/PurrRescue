@@ -16,13 +16,14 @@ class CatDetailsViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
-    fun markRescued(catId: String, rescuedAt: Long) {
+    fun markRescued(catId: String, rescuedOn: Long, rescuedBy: String) {
         db.collection(Constants.CAT_COLLECTION)
             .document(catId)
             .update(
                 mapOf(
                     "status" to Constants.CAT_RESCUED,
-                    "rescuedAt" to rescuedAt
+                    "rescuedOn" to rescuedOn,
+                    "rescuedBy" to rescuedBy
                 )
             )
             .addOnSuccessListener {

@@ -65,5 +65,6 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.glide)
     implementation(libs.toolTip)
-    implementation(libs.lottie)
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }

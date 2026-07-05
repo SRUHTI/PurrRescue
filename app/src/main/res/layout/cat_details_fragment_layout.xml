@@ -1,313 +1,464 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
-    android:fillViewport="true">
+    android:background="@color/off_white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clCatDetailsLayout"
+        android:id="@+id/clDetailLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="10dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvHeaderCatDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:background="@drawable/drawable_tape"
-            android:drawableEnd="@drawable/outline_share_24"
-            android:fontFamily="@font/comic_neue_bold"
-            android:padding="@dimen/margin"
-            android:text="Cat Details - ID: PR-0001"
-            android:textAllCaps="true"
-            android:textColor="@color/pantone_blue_aster"
-            android:textSize="@dimen/text_large"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/includeImageView"
+            android:id="@+id/tvHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
+            android:layout_height="54dp"
+            android:paddingHorizontal="@dimen/margin_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHeaderCatDetails">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHeaderCatDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:fontFamily="@font/comic_neue_bold"
+                android:text="Cat - ID: PR-0001"
+                android:textAllCaps="true"
+                android:textColor="@color/pantone_blue_aster"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/outline_share_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivRecOne"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@color/alice_blue"
-                    android:src="@drawable/image_view"
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.5"
+            android:background="#99B3B3B3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/off_white"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clCatDetailsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnShowCatImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:background="@drawable/button_bg"
+                    android:fontFamily="@font/comic_neue_bold"
+                    android:padding="@dimen/margin_medium"
+                    android:text="show cat image"
+                    android:textAllCaps="true"
+                    android:textColor="@color/pantone_blue_aster"
+                    android:textSize="@dimen/button_size"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCatDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:backgroundTint="@color/off_white"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="@dimen/margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnShowCatImage">
+
+                    <TableLayout
+                        android:id="@+id/tlCatDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/blue_rectangle"
+                        android:divider="@color/pantone_blue_aster"
+                        android:dividerHeight="14dp"
+                        android:orientation="vertical"
+                        android:showDividers="middle"
+                        android:stretchColumns="0">
+
+                        <TableRow
+                            android:id="@+id/trDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvDescriptionHeader"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue_bold"
+                                android:padding="@dimen/margin"
+                                android:text="Description :"
+                                android:textSize="@dimen/text_standard" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvCatDescription"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue"
+                                android:padding="@dimen/margin"
+                                android:text="Orange cat near bus stop" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/trLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvLocationHeader"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue_bold"
+                                android:padding="@dimen/margin"
+                                android:text="Location :"
+                                android:textSize="@dimen/text_standard" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvLocation"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue"
+                                android:padding="@dimen/margin"
+                                android:text="Khar, Mumbai" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/trMap"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <fragment
+                                android:id="@+id/mapFragment"
+                                android:name="com.google.android.gms.maps.SupportMapFragment"
+                                android:layout_width="match_parent"
+                                android:layout_height="220dp" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/trCatImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/ivCatImage"
+                                android:layout_width="match_parent"
+                                android:layout_height="220dp"
+                                android:layout_weight="1"
+                                android:scaleType="centerCrop"
+                                tools:src="@drawable/paws" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/trStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvStatusHeader"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue_bold"
+                                android:padding="@dimen/margin"
+                                android:text="Status :"
+                                android:textSize="@dimen/text_standard" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvStatus"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue"
+                                android:padding="@dimen/margin"
+                                android:text="seen" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvRescueTimeLineHeader"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comic_neue_bold"
+                                android:gravity="center"
+                                android:padding="@dimen/margin"
+                                android:text="Rescue Timeline"
+                                android:textSize="@dimen/text_standard"
+                                android:textStyle="bold" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/trReportedBy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvReportedByHeader"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue_bold"
+                                android:padding="@dimen/margin"
+                                android:text="Reported by :"
+                                android:textSize="@dimen/text_standard" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvReportedBy"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue"
+                                android:padding="@dimen/margin"
+                                android:text="26 Jun 2026, 10:30 AM" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/trReportedOn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvReportedOnHeader"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue_bold"
+                                android:padding="@dimen/margin"
+                                android:text="Reported on :"
+                                android:textSize="@dimen/text_standard" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvReportedOnTimeLine"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue"
+                                android:padding="@dimen/margin"
+                                android:text="26 Jun 2026, 10:30 AM" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/trRescuedBy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvRescuedByHeader"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue_bold"
+                                android:padding="@dimen/margin"
+                                android:text="Rescued by :"
+                                android:textSize="@dimen/text_standard" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvRescuedBy"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue"
+                                android:padding="@dimen/margin"
+                                android:text="swetha" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/trRescuedOn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvRescuedOnHeader"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue_bold"
+                                android:padding="@dimen/margin"
+                                android:text="Rescued on :"
+                                android:textSize="@dimen/text_standard" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvRescuedOn"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/comic_neue"
+                                android:padding="@dimen/margin"
+                                android:text="26 Jun 2026, 10:30 AM" />
+
+                        </TableRow>
+
+                    </TableLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMarkRescued"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginBottom="@dimen/margin_large"
+                    android:background="@drawable/button_bg"
+                    android:fontFamily="@font/comic_neue_bold"
+                    android:padding="@dimen/margin_medium"
+                    android:text="Mark Rescued"
+                    android:textColor="@color/pantone_blue_aster"
+                    android:textSize="@dimen/button_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvCatDetails" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
-                android:id="@+id/tape_top"
-                android:layout_width="150dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="-10dp"
-                android:layout_marginEnd="-50dp"
-                android:alpha="0.5"
-                android:background="@drawable/drawable_tape"
-                android:rotation="45"
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/successScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_large"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnDone"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivSuccessIcon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/cat_lover"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:id="@+id/tape_bottom"
-                android:layout_width="150dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="-50dp"
-                android:layout_marginBottom="-10dp"
-                android:alpha="0.5"
-                android:background="@drawable/drawable_tape"
-                android:rotation="45"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/tvSuccessMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/comic_neue_bold"
+                android:gravity="center"
+                android:text="Purr-fect!"
+                android:textColor="@color/pantone_blue_aster"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivSuccessIcon" />
 
+            <TextView
+                android:id="@+id/tvSuccessMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/comic_neue_bold"
+                android:gravity="center"
+                android:text="Thank you for rescuing me!"
+                android:textColor="@color/pantone_blue_aster"
+                android:textSize="@dimen/text_very_large"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSuccessMessage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!--<include
-            android:id="@+id/includeImageView"
-            layout="@layout/cat_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHeaderCatDetails" />-->
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvCatDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
-            android:backgroundTint="@color/off_white"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="@dimen/margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/includeImageView">
-
-            <TableLayout
-                android:id="@+id/tlCatDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/blue_rectangle"
-                android:divider="@color/pantone_blue_aster"
-                android:dividerHeight="14dp"
-                android:orientation="vertical"
-                android:showDividers="middle"
-                android:stretchColumns="0">
-
-                <TableRow
-                    android:id="@+id/trDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvDescriptionHeader"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue_bold"
-                        android:padding="@dimen/margin"
-                        android:text="Description :" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvCatDescription"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue"
-                        android:padding="@dimen/margin"
-                        android:text="Orange cat near bus stop" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/trLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvLocationHeader"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue_bold"
-                        android:padding="@dimen/margin"
-                        android:text="Location :" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvLocation"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue"
-                        android:padding="@dimen/margin"
-                        android:text="Khar, Mumbai" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/trMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <fragment
-                        android:id="@+id/mapFragment"
-                        android:name="com.google.android.gms.maps.SupportMapFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="220dp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/trStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvStatusHeader"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue_bold"
-                        android:padding="@dimen/margin"
-                        android:text="Status :" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvStatus"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue"
-                        android:padding="@dimen/margin"
-                        android:text="seen" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvRescueTimeLineHeader"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/comic_neue_bold"
-                        android:gravity="center"
-                        android:padding="@dimen/margin"
-                        android:text="Rescue Timeline"
-                        android:textStyle="bold" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/trReportedBy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvReportedByHeader"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue_bold"
-                        android:padding="@dimen/margin"
-                        android:text="Reported by :" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvReportedByTimeLine"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue"
-                        android:padding="@dimen/margin"
-                        android:text="26 Jun 2026, 10:30 AM" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/trRescuedBy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:visibility="visible">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvRescuedByTimeLine"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue_bold"
-                        android:padding="@dimen/margin"
-                        android:text="Rescued by :" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvRescuedByHeader"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/comic_neue"
-                        android:padding="@dimen/margin"
-                        android:text="26 Jun 2026, 10:30 AM" />
-
-                </TableRow>
-
-            </TableLayout>
-
-        </androidx.cardview.widget.CardView>
-
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnMarkRescued"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnDone"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
             android:layout_marginBottom="@dimen/margin_large"
             android:background="@drawable/button_bg"
             android:fontFamily="@font/comic_neue_bold"
             android:padding="@dimen/margin_medium"
-            android:text="Mark Rescued"
-            android:textSize="@dimen/button_size"
+            android:stateListAnimator="@null"
+            android:text="done"
+            android:textColor="@color/pantone_blue_aster"
+            android:textSize="@dimen/text_standard"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvCatDetails" />
-
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

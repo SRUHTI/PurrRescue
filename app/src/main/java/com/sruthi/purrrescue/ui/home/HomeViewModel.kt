@@ -13,19 +13,25 @@ class HomeViewModel : ViewModel() {
 
     private var repository = CatRepository()
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
     private var _cats = MutableLiveData<List<Cat>>()
     val cat: LiveData<List<Cat>> = _cats
+
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
 
     fun getCatByStatus(status: String) {
         viewModelScope.launch {
-
+            _isLoading.value = true
             try {
                 _cats.value = repository.getCatsByStatus(status)
             } catch (e: Exception) {
                 _error.value = e.message ?: "Something went wrong"
+            } finally {
+                _isLoading.value = false
             }
         }
     }

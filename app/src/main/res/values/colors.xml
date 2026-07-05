@@ -7,4 +7,7 @@
     <color name="pale_primrose">#F1F0C0</color>
     <color name="off_white">#FAF9F6</color>
     <color name="orange">#FFA500</color>
+    <color name="grey">#383838</color>
+    <color name="green">#5FDB62</color>
+    <color name="red">#E62063</color>
 </resources>

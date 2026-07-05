@@ -1,55 +1,60 @@
-package com.sruthi.purrrescue.ui.login
+    package com.sruthi.purrrescue.ui.login
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.sruthi.purrrescue.databinding.LoginFragmentLayoutBinding
-import com.sruthi.purrrescue.utils.Utils
+    import android.os.Bundle
+    import android.view.LayoutInflater
+    import android.view.View
+    import android.view.ViewGroup
+    import androidx.fragment.app.Fragment
+    import androidx.navigation.fragment.findNavController
+    import com.sruthi.purrrescue.R
+    import com.sruthi.purrrescue.base.BaseFragment
+    import com.sruthi.purrrescue.databinding.LoginFragmentLayoutBinding
+    import com.sruthi.purrrescue.utils.Utils
 
-class LoginFragment : Fragment() {
+    class LoginFragment: BaseFragment() {
 
-    private lateinit var binding: LoginFragmentLayoutBinding
+        private lateinit var binding: LoginFragmentLayoutBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
 
-        binding = LoginFragmentLayoutBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+            binding = LoginFragmentLayoutBinding.inflate(inflater, container, false)
+            return binding.root
+        }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = LoginViewModel()
-
-        binding.btnLogin.setOnClickListener {
-            val email = binding.etEmail.text.toString().trim()
-            val password = binding.etPassword.text.toString().trim()
-
-            viewModel.login(email, password)
+            val viewModel = LoginViewModel()
 
             viewModel.success.observe(viewLifecycleOwner) {
-                if (it) {
+                if (it && findNavController().currentDestination?.id == R.id.loginFragment) {
                     findNavController().navigate(LoginFragmentDirections.loginToHomeScreen())
                 }
             }
 
             viewModel.error.observe(viewLifecycleOwner) { error ->
-                Utils.showToast(requireContext(),error.toString())
+                Utils.showToast(requireContext(), error.toString())
+            }
+
+            viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+                if (loading) showLoading() else hideLoading()
+            }
+
+            binding.btnLogin.setOnClickListener {
+                val email = binding.etEmail.text.toString().trim()
+                val password = binding.etPassword.text.toString().trim()
+                viewModel.login(email, password)
+            }
+
+            binding.btnSignUp.setOnClickListener {
+                findNavController().navigate(LoginFragmentDirections.loginToSignupScreen())
             }
         }
 
-        binding.btnSignUp.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.loginToSignupScreen())
-        }
+
     }
-
-
-}
