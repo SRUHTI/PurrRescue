@@ -16,6 +16,7 @@ data class Cat(
     val longitude: Double = 0.0,
     val status: String = "Reported",
     val reportedBy: String = "",
+    val reportedByName: String = "",
     val reportedAt: Long = 0L,
 
     val rescuedBy: String? = null,

@@ -9,6 +9,7 @@ plugins {
 android {
     namespace = "com.sruthi.purrrescue"
     compileSdk = 36
+
     defaultConfig {
         applicationId = "com.sruthi.purrrescue"
         minSdk = 24
@@ -17,6 +18,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders["MAPS_API_KEY"] = project.findProperty("MAPS_API_KEY") as String? ?: ""
     }
 
     buildTypes {
@@ -38,8 +40,8 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
-
 }
 
 dependencies {
@@ -67,4 +69,5 @@ dependencies {
     implementation(libs.toolTip)
 
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }

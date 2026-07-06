@@ -12,7 +12,9 @@
     <string name="why_purrRescue">Why PurrRescue?</string>
     <string name="why_purrRescue_msg">Many stray cats go unnoticed because people don\'t know whom to contact or how to help. \nPurrRescue provides a simple way to report, track, and update rescue cases, allowing communities to work together and improve the lives of cats in need.</string>
     <string name="no_rescues_yet">No reports yet</string>
-    <string name="help_save_a_cat_to_see_it_here">Help, report a cat to see it here!</string>
+    <string name="help_save_a_cat_to_see_it_here">Help, report/rescue a cat to see it here!</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="please_check_your_network_and_try_again">Please check your network and try again</string>
 
 
 </resources>

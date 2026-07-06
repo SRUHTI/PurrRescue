@@ -5,6 +5,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
@@ -24,7 +26,7 @@ object Utils {
         return bitmap
     }
 
-    fun shareViewAsImage(context: Context, view: View) {
+    fun shareViewAsImage(context: Context, view: View, catStatus: String) {
         val bitmap = view.toBitmap()
 
         val cachePath = File(context.cacheDir, "shared_images")
@@ -41,13 +43,27 @@ object Utils {
             file
         )
 
+        val appLink = "https://github.com/SRUHTI/PurrRescue"
+
+        val message = if (catStatus == Constants.CAT_RESCUED) {
+            "Great news! This cat has been rescued, Join PurrRescue to help save more: $appLink"
+        } else {
+            "Help us rescue this cat! Join PurrRescue: $appLink"
+        }
+
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "image/png"
             putExtra(Intent.EXTRA_STREAM, uri)
+            putExtra(Intent.EXTRA_TEXT, message)
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
 
-        context.startActivity(Intent.createChooser(shareIntent, "Share cat rescue card"))
+        context.startActivity(
+            Intent.createChooser(
+                shareIntent,
+                if (catStatus == Constants.CAT_RESCUED) "Happy update, Cat Rescued" else "Help us rescue this cat"
+            )
+        )
     }
 
     fun shareAppLink(context: Context) {
@@ -67,6 +83,13 @@ object Utils {
     fun formatDate(timestamp: Long): String {
         val sdf = SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
         return sdf.format(Date(timestamp))
+    }
+
+    fun isInternetAvailable(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = cm.activeNetwork ?: return false
+        val capabilities = cm.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 
 

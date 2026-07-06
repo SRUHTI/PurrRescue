@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
-    android:fitsSystemWindows="true"
-    android:paddingHorizontal="5dp"
-    android:paddingVertical="5dp">
+    android:background="@color/off_white">
 
     <View
         android:id="@+id/accentCircle"
@@ -28,17 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!--<com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/ivLogo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="cat_idle.json"
-            app:lottie_loop="true" />-->
-        <!-- App Logo / Icon -->
         <ImageView
             android:id="@+id/ivLogo"
             android:layout_width="64dp"
@@ -73,8 +59,8 @@
             android:layout_marginTop="6dp"
             android:fontFamily="@font/comic_neue_bold"
             android:text="Welcome to PurrRescue"
-            android:textColor="#808080"
-            android:textSize="15sp"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/text_very_large"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,10 +71,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:alpha="0.8"
             android:fontFamily="@font/comic_neue_bold"
             android:text="Help stray cats find safety and care."
-            android:textColor="#808080"
-            android:textSize="15sp"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/text_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle1" />
@@ -99,10 +86,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:alpha="0.8"
             android:fontFamily="@font/comic_neue_bold"
             android:text="Report, track, and support rescue \n       efforts in your community."
-            android:textColor="#808080"
-            android:textSize="15sp"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/text_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitleOne" />

@@ -1,10 +1,13 @@
 package com.sruthi.purrrescue.ui.details
 
 import android.app.Dialog
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -23,6 +26,7 @@ import com.sruthi.purrrescue.databinding.CatDetailsFragmentLayoutBinding
 import com.sruthi.purrrescue.databinding.DialogCatImageLayoutBinding
 import com.sruthi.purrrescue.utils.Constants
 import com.sruthi.purrrescue.utils.Utils
+import com.sruthi.purrrescue.utils.Utils.isInternetAvailable
 
 class CatDetailsFragment : BaseFragment(), OnMapReadyCallback {
 
@@ -74,24 +78,37 @@ class CatDetailsFragment : BaseFragment(), OnMapReadyCallback {
             tvCatDescription.text = cat.description
             tvLocation.text = "${cat.street}, ${cat.city}"
             tvStatus.text = cat.status
-            tvReportedBy.text = cat.reportedBy
+            tvReportedBy.text = cat.reportedByName
             tvReportedOnTimeLine.text = Utils.formatDate(cat.reportedAt)
             tvRescuedBy.text = cat.rescuedBy ?: "Not yet rescued"
             tvRescuedOn.text = cat.rescuedOn?.let { Utils.formatDate(it) } ?: "Not yet rescued"
 
             Glide.with(requireContext())
                 .load(cat.imageUrl)
-                .placeholder(R.drawable.paws)
-                .error(R.drawable.paws)
+                .placeholder(R.drawable.placeholder_inset)
+                .error(R.drawable.placeholder_inset)
                 .centerCrop()
                 .into(ivCatImage)
         }
 
+        when ( cat.status) {
+            Constants.CAT_REPORTED -> {
+                binding.tvStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+            }
+            Constants.CAT_RESCUED -> {
+                binding.tvStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+            }
+        }
+
         binding.ivShare.setOnClickListener {
-            Utils.shareViewAsImage(requireContext(), binding.clCatDetailsLayout)
+            Utils.shareViewAsImage(requireContext(), binding.clCatDetailsLayout, cat.status)
         }
 
         binding.btnMarkRescued.setOnClickListener {
+            if (!isInternetAvailable(requireContext())) {
+                Utils.showToast(requireContext(), "No internet connection. Please check and try again.")
+                return@setOnClickListener
+            }
             alertDialog()
         }
 
@@ -138,6 +155,9 @@ class CatDetailsFragment : BaseFragment(), OnMapReadyCallback {
 
         Glide.with(this)
             .load(imageUrl)
+            .placeholder(R.drawable.placeholder_inset)
+            .error(R.drawable.placeholder_inset)
+            .centerCrop()
             .into(dialogBinding.ivFullImage)
 
         dialogBinding.ivClose.setOnClickListener {

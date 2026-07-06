@@ -22,6 +22,19 @@ class HomeViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    private val _tabCounts = MutableLiveData<Pair<Int, Int>>()
+    val tabCounts: LiveData<Pair<Int, Int>> = _tabCounts
+
+
+    fun loadTabCounts() {
+        viewModelScope.launch {
+            try {
+                val counts = repository.getCatCounts()
+                _tabCounts.value = counts
+            } catch (e: Exception) {
+            }
+        }
+    }
 
     fun getCatByStatus(status: String) {
         viewModelScope.launch {

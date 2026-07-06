@@ -134,6 +134,15 @@
         android:label="MyReportsFragment"
         tools:layout="@layout/myreports_fragment_layout">
 
+        <action
+            android:id="@+id/reports_to_cats_detail_screen"
+            app:destination="@+id/catDetailsFragment" >
+
+            <argument
+                android:name="catDetails"
+                app:argType="com.sruthi.purrrescue.data.model.Cat" />
+        </action>
+
     </fragment>
 
 </navigation>

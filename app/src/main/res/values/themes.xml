@@ -22,4 +22,11 @@
         <item name="android:textSize">@dimen/text_large</item>
     </style>
 
+    <style name="Theme.PurrRescue.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/pale_primrose</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_splash_logo</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.MyApp</item>
+    </style>
+
 </resources>

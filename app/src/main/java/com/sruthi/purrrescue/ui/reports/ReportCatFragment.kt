@@ -1,15 +1,21 @@
 package com.sruthi.purrrescue.ui.reports
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.location.LocationManagerCompat
+import androidx.core.location.LocationManagerCompat.isLocationEnabled
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -29,6 +35,7 @@ import java.util.Locale
 import java.util.UUID
 import com.sruthi.purrrescue.R
 import com.sruthi.purrrescue.base.BaseFragment
+import com.sruthi.purrrescue.utils.Utils.isInternetAvailable
 
 class ReportCatFragment: BaseFragment() {
 
@@ -115,6 +122,11 @@ class ReportCatFragment: BaseFragment() {
         }
 
         binding.btnSubmit.setOnClickListener {
+            if (!isInternetAvailable(requireContext())) {
+                Utils.showToast(requireContext(), "No internet connection. Please check and try again.")
+                return@setOnClickListener
+            }
+
             if (!validateForm()) return@setOnClickListener
 
             val cat = Cat(
@@ -127,9 +139,10 @@ class ReportCatFragment: BaseFragment() {
                 latitude = currentLat,
                 longitude = currentLng,
                 status = "Reported",
-                reportedBy = FirebaseAuth.getInstance().currentUser?.displayName
+                reportedBy = FirebaseAuth.getInstance().currentUser?.uid ?: "unknown",
+                reportedByName = FirebaseAuth.getInstance().currentUser?.displayName
                     ?: FirebaseAuth.getInstance().currentUser?.email
-                    ?: "unknown",
+                    ?: "Anonymous",
                 reportedAt = System.currentTimeMillis()
             )
 
@@ -156,7 +169,18 @@ class ReportCatFragment: BaseFragment() {
         }
     }
 
+    private fun isLocationEnabled(context: Context): Boolean {
+        val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return LocationManagerCompat.isLocationEnabled(locationManager)
+    }
+
     private fun captureLocation() {
+        if (!isLocationEnabled(requireContext())) {
+            Utils.showToast(requireContext(), "Please turn on location services")
+            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+            return
+        }
+
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION

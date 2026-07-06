@@ -1,6 +1,7 @@
 import android.content.Context
 import android.net.Uri
 import android.util.Base64
+import com.sruthi.purrrescue.utils.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.FormBody
@@ -10,7 +11,7 @@ import org.json.JSONObject
 
 object ImgUploader {
 
-    private const val API_KEY = "19329d633149e0ee8664e1f92b86ed14"
+    private const val API_KEY = Constants.IMGBB_API_KEY
     private val client = OkHttpClient()
 
     suspend fun uploadImage(context: Context, imageUri: Uri): String {

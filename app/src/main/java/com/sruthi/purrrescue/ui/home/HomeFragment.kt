@@ -11,12 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.ktx.Firebase
+import com.sruthi.purrrescue.R
 import com.sruthi.purrrescue.adapter.CatListAdapter
 import com.sruthi.purrrescue.base.BaseFragment
 import com.sruthi.purrrescue.data.repository.AuthRepository
 import com.sruthi.purrrescue.databinding.HomeFragmentLayoutBinding
 import com.sruthi.purrrescue.utils.Constants
 import com.sruthi.purrrescue.utils.Utils
+import com.sruthi.purrrescue.utils.Utils.isInternetAvailable
 import java.util.Calendar
 
 class HomeFragment : BaseFragment() {
@@ -39,6 +41,28 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (!isInternetAvailable(requireContext())) {
+            Utils.showToast(requireContext(), getString(R.string.no_internet_connection))
+
+            binding.rvCatList.visibility = View.GONE
+            binding.llNoCatFound.visibility = View.VISIBLE
+            binding.tvEmptyMessageOne.text = getString(R.string.no_internet_connection)
+            binding.tvEmptyMessageTwo.text = getString(R.string.please_check_your_network_and_try_again)
+            binding.ivEmpty.setImageResource(R.drawable.no_internet)
+            binding.ivDownArrow.visibility = View.GONE
+            return
+        }
+
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Reported"))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Rescued"))
+
+        viewModel.loadTabCounts()
+
+        viewModel.tabCounts.observe(viewLifecycleOwner) { (reportedCount, rescuedCount) ->
+            binding.tabLayout.getTabAt(0)?.text = "Reported ($reportedCount)"
+            binding.tabLayout.getTabAt(1)?.text = "Rescued ($rescuedCount)"
+        }
+
         viewModel.getCatByStatus(Constants.CAT_REPORTED)
 
         viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
@@ -50,32 +74,20 @@ class HomeFragment : BaseFragment() {
 
         binding.tvGreetings.text = getGreeting(name)
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Reported"))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Rescued"))
-
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-
                 when (tab?.position) {
-                    0 -> {
-                        viewModel.getCatByStatus(Constants.CAT_REPORTED)
-                    }
-
-                    1 -> {
-                        viewModel.getCatByStatus(Constants.CAT_RESCUED)
-                    }
+                    0 -> viewModel.getCatByStatus(Constants.CAT_REPORTED)
+                    1 -> viewModel.getCatByStatus(Constants.CAT_RESCUED)
                 }
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
+
+        viewModel.getCatByStatus(Constants.CAT_REPORTED)
 
         viewModel.cat.observe(viewLifecycleOwner) { cats ->
             if (cats.isNullOrEmpty()) {
@@ -105,6 +117,11 @@ class HomeFragment : BaseFragment() {
             in 17..20 -> "Good evening, $userName!"
             else -> "Good night, $userName!"
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadTabCounts()
     }
 
 }

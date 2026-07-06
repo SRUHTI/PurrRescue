@@ -19,14 +19,21 @@ class CatRepository {
             .get()
             .await()
             .toObjects(Cat::class.java)
+            .sortedByDescending { it.reportedAt }
     }
 
     suspend fun getCatsByStatus(status: String): List<Cat> {
-        return firestore
+        val cats = firestore
             .whereEqualTo("status", status)
             .get()
             .await()
             .toObjects(Cat::class.java)
+
+        return if (status == Constants.CAT_RESCUED) {
+            cats.sortedByDescending { it.rescuedOn ?: 0L }
+        } else {
+            cats.sortedByDescending { it.reportedAt }
+        }
     }
 
 
@@ -43,6 +50,14 @@ class CatRepository {
 
         val updatedCat = cat.copy(imageUrl = imageUrl)
         firestore.document(updatedCat.catId).set(updatedCat).await()
+    }
+
+    suspend fun getCatCounts(): Pair<Int, Int> {
+        val reportedCount = firestore.whereEqualTo("status", Constants.CAT_REPORTED)
+            .get().await().size()
+        val rescuedCount = firestore.whereEqualTo("status", Constants.CAT_RESCUED)
+            .get().await().size()
+        return Pair(reportedCount, rescuedCount)
     }
 
    /* suspend fun reportCat(cat: Cat, photoUri: Uri) {
