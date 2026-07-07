@@ -4,15 +4,6 @@ PurrRescue is a community-driven Android application designed to help people rep
 
 ## Screenshots
 
-PurrRescue/
-├── README.md
-├── screenshots/
-│   ├── welcome.png
-│   ├── login.png
-│   ├── home.png
-│   ├── report_cat.png
-│   └── profile.png
-
 | Welcome                                    | Login                                   | Home                                 | Report a Cat                                       | Rescued Screen                                        | Profile                                    | My Reports                                | About                                  |
 |--------------------------------------------|-----------------------------------------|--------------------------------------|----------------------------------------------------|-------------------------------------------------------|--------------------------------------------|-------------------------------------------|----------------------------------------|
 | ![Welcome](screenshots/Welcome_screen.png) | ![Login](screenshots/Login_screen.png)> | ![Home](screenshots/Home_screen.png) | ![Report Cat](screenshots/Report_a_cat_screen.png) | ![Rescued Screen](screenshots/Rescued_cat_screen.png) | ![Profile](screenshots/Profile_screen.png) | ![My Reports](screenshots/My_Reports.png) | ![About](screenshots/About_screen.png) |
