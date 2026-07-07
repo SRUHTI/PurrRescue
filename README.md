@@ -1,6 +1,6 @@
 # PurrRescue
 
-Community-driven app to report, track, and rescue stray cats.
+PurrRescue is a community-driven Android application designed to help people report, track, and support the rescue of stray cats. The app enables users to create rescue requests, share the location and details of cats in need, and collaborate with nearby volunteers and animal lovers to ensure timely assistance.
 
 ## Screenshots
 
@@ -13,9 +13,9 @@ PurrRescue/
 │   ├── report_cat.png
 │   └── profile.png
 
-| Welcome                                    | Login                                   | Home                                 | Report a Cat                                       | Rescued Screen                                        | Profile                                    | My Reports                                    | About                                  |
-|--------------------------------------------|-----------------------------------------|--------------------------------------|----------------------------------------------------|-------------------------------------------------------|--------------------------------------------|-----------------------------------------------|----------------------------------------|
-| ![Welcome](screenshots/Welcome_screen.png) | ![Login](screenshots/Login_screen.png)> | ![Home](screenshots/Home_screen.png) | ![Report Cat](screenshots/Report_a_cat_screen.png) | ![Rescued Screen](screenshots/Rescued_cat_screen.png) | ![Profile](screenshots/Profile_screen.png) | ![My Reports](screenshots/Profile_screen.png) | ![About](screenshots/About_screen.png) |
+| Welcome                                    | Login                                   | Home                                 | Report a Cat                                       | Rescued Screen                                        | Profile                                    | My Reports                                | About                                  |
+|--------------------------------------------|-----------------------------------------|--------------------------------------|----------------------------------------------------|-------------------------------------------------------|--------------------------------------------|-------------------------------------------|----------------------------------------|
+| ![Welcome](screenshots/Welcome_screen.png) | ![Login](screenshots/Login_screen.png)> | ![Home](screenshots/Home_screen.png) | ![Report Cat](screenshots/Report_a_cat_screen.png) | ![Rescued Screen](screenshots/Rescued_cat_screen.png) | ![Profile](screenshots/Profile_screen.png) | ![My Reports](screenshots/My_Reports.png) | ![About](screenshots/About_screen.png) |
 
 
 ## Features
@@ -69,11 +69,11 @@ PurrRescue/
 
 ## Permissions
 
-| Permission | Why it's needed |
-|---|---|
-| `ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION` | Capture the reported cat's location |
-| Photo/media access | Upload a photo of the reported cat |
-| `INTERNET` | Firebase Auth, Firestore, ImgBB, and Maps API calls |
+| Permission                                        | Why it's needed                                     |
+|---------------------------------------------------|-----------------------------------------------------|
+| `ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION` | Capture the reported cat's location                 |
+| Photo/media access                                | Upload a photo of the reported cat                  |
+| `INTERNET`                                        | Firebase Auth, Firestore, ImgBB, and Maps API calls |
 
 ## Project structure
 
