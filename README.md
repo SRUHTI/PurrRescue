@@ -13,9 +13,9 @@ PurrRescue/
 │   ├── report_cat.png
 │   └── profile.png
 
-| Welcome                                    | Login                                   | Home                                 | Report a Cat                                       | Profile                                    |
-|--------------------------------------------|-----------------------------------------|--------------------------------------|----------------------------------------------------|--------------------------------------------|
-| ![Welcome](screenshots/Welcome_screen.png) | ![Login](screenshots/Login_screen.png)> | ![Home](screenshots/Home_screen.png) | ![Report Cat](screenshots/Report_a_cat_screen.png) | ![Profile](screenshots/Profile_screen.png) |
+| Welcome                                    | Login                                   | Home                                 | Report a Cat                                       | Rescued Screen                                        | Profile                                    | My Reports                                    | About                                  |
+|--------------------------------------------|-----------------------------------------|--------------------------------------|----------------------------------------------------|-------------------------------------------------------|--------------------------------------------|-----------------------------------------------|----------------------------------------|
+| ![Welcome](screenshots/Welcome_screen.png) | ![Login](screenshots/Login_screen.png)> | ![Home](screenshots/Home_screen.png) | ![Report Cat](screenshots/Report_a_cat_screen.png) | ![Rescued Screen](screenshots/Rescued_cat_screen.png) | ![Profile](screenshots/Profile_screen.png) | ![My Reports](screenshots/Profile_screen.png) | ![About](screenshots/About_screen.png) |
 
 
 ## Features
