@@ -107,7 +107,7 @@ Issues and pull requests are welcome. Please open an issue first to discuss what
 
 
 ## Acknowledgments
-This project was built with the help of [Claude](https://claude.ai), used for:
+Got help from [Claude](https://claude.ai), for the below:
 
 - Debugging Firebase integration issues
 - On using IMGBB api for image uploading
